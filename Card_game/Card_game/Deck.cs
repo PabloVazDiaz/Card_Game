@@ -8,9 +8,37 @@ namespace Card_game
 {
     class Deck
     {
-        private List<Card> cards { get; set; }
-        private int players { get; set; }
-        private string name { get; set; }
+        public Deck(List<Card> initialCards, List<Card> cards, int players, string name)
+        {
+            InitialCards = initialCards;
+            Cards = cards;
+            Players = players;
+            Name = name;
+        }
 
+        private List<Card> InitialCards { get; set; }
+        private List<Card> Cards { get; set; }
+        private int Players { get; set; }
+        private string Name { get; set; }
+
+       
+
+
+
+        public Card CardDraw()
+        {
+            Card selectedCard = Cards.Last();
+            Cards.Remove(selectedCard);
+            if (Cards.Count == 0)
+            {
+                ResetDeck();
+            }
+            return selectedCard;
+        }
+
+        public void ResetDeck()
+        {
+            Cards.AddRange(InitialCards);
+        }
     }
 }

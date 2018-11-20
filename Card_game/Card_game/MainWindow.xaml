@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid Name="Player1_Hand" HorizontalAlignment="Left" Height="80" Margin="304,340,0,0" VerticalAlignment="Top" Width="100">
+            <Button Name="Button" Content="prueba" MouseDown="Button_MouseDown" MouseUp="Button_MouseUp" />
+
+
+        </Grid>
+
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Card_game
 {
     /// <summary>
@@ -20,9 +21,25 @@ namespace Card_game
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+       
+
+        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = Mouse.GetPosition(Application.Current.MainWindow);
+            ((Button)sender).TranslatePoint(point, Application.Current.MainWindow);
+        }
+
+        private void Button_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Point point = Mouse.GetPosition(Application.Current.MainWindow);
+            ((Button)sender).TranslatePoint(point, Application.Current.MainWindow);
         }
     }
 }
