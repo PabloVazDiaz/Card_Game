@@ -21,25 +21,49 @@ namespace Card_game
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        bool MouseIsDown;
+        Point initial;
+        Image imagemoving;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-       
-
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Point point = Mouse.GetPosition(Application.Current.MainWindow);
-            ((Button)sender).TranslatePoint(point, Application.Current.MainWindow);
+            Label1.Visibility = Visibility.Hidden;
+            MouseIsDown = false;
+            if (Mouse.GetPosition(Application.Current.MainWindow).X > Label1.Margin.Left && Mouse.GetPosition(Application.Current.MainWindow).Y >Label1.Margin.Top)
+            {
+                MessageBox.Show(Mouse.GetPosition(Application.Current.MainWindow).X.ToString()+" "+ Label1.Margin.Left);
+            }
         }
 
-        private void Button_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Point point = Mouse.GetPosition(Application.Current.MainWindow);
-            ((Button)sender).TranslatePoint(point, Application.Current.MainWindow);
+            Label1.Visibility = Visibility.Visible;
+            MouseIsDown = true;
+            initial = e.GetPosition(sender as Image);
+            imagemoving = (sender as Image);
+
+        }
+
+        private void Image_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void canvasTotal_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (MouseIsDown)
+            {
+
+                Point p = Mouse.GetPosition(Application.Current.MainWindow);
+                double xOffset = p.X - initial.X;
+                double yOffset = p.Y - initial.Y;
+                imagemoving.RenderTransform = new TranslateTransform { X = xOffset, Y = yOffset };
+            }
         }
     }
 }
