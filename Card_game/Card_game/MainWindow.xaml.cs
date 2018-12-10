@@ -24,37 +24,44 @@ namespace Card_game
         bool MouseIsDown;
         Point initial;
         Image imagemoving;
+        Point boundary;
+
+
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        
+
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Label1.Visibility = Visibility.Hidden;
+            
             MouseIsDown = false;
-            if (Mouse.GetPosition(Application.Current.MainWindow).X > Label1.Margin.Left && Mouse.GetPosition(Application.Current.MainWindow).Y >Label1.Margin.Top)
+            Point mouse = Mouse.GetPosition(Application.Current.MainWindow);
+            if (mouse.X > boundary.X && mouse.Y >boundary.Y && mouse.X < boundary.X+Label1.Width && mouse.Y<Label1.Height+boundary.Y)
             {
                 MessageBox.Show(Mouse.GetPosition(Application.Current.MainWindow).X.ToString()+" "+ Label1.Margin.Left);
+            }
+            else
+            {
+                imagemoving.RenderTransform = new TranslateTransform { X = initial.X , Y = initial.Y };
             }
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Label1.Visibility = Visibility.Visible;
+            
             MouseIsDown = true;
-            initial = e.GetPosition(sender as Image);
+            initial= e.GetPosition(sender as Image);
             imagemoving = (sender as Image);
-
-        }
-
-        private void Image_MouseMove(object sender, MouseEventArgs e)
-        {
+            //initial = new Point( Canvas.GetLeft(imagemoving), Canvas.GetTop(imagemoving));
             
         }
 
-        private void canvasTotal_MouseMove(object sender, MouseEventArgs e)
+
+        private void CanvasTotal_MouseMove(object sender, MouseEventArgs e)
         {
             if (MouseIsDown)
             {
@@ -64,6 +71,11 @@ namespace Card_game
                 double yOffset = p.Y - initial.Y;
                 imagemoving.RenderTransform = new TranslateTransform { X = xOffset, Y = yOffset };
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            boundary = new Point(Canvas.GetLeft(Label1), Canvas.GetTop(Label1));
         }
     }
 }

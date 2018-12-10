@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_game"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Canvas Name="canvasTotal" MouseMove="canvasTotal_MouseMove">
-        
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Canvas Name="canvasTotal" MouseMove="CanvasTotal_MouseMove">
+
         <Grid Name="Player1_Hand" HorizontalAlignment="Left" Height="80" Margin="304,340,0,0" VerticalAlignment="Top" Width="100">
         </Grid>
-        <Label Content="Suprise" Name="Label1" HorizontalAlignment="Left" Margin="304,182,0,0" Visibility="Hidden" VerticalAlignment="Top"/>
-        <Image Source="C:\Users\Anonimo\source\repos\Card_Game\Card_game\Card_game\Assets\settings-icon.png" MouseUp="Image_MouseUp" MouseDown="Image_MouseDown" MouseMove="Image_MouseMove" Height="70" Width="79"/>
+        <Label Content="Suprise" Name="Label1" HorizontalAlignment="Left"   VerticalAlignment="Top" Height="53" Canvas.Left="304" Canvas.Top="182" Width="100"/>
+        <Image Source="C:\Users\Anonimo\source\repos\Card_Game\Card_game\Card_game\Assets\settings-icon.png" MouseUp="Image_MouseUp" MouseDown="Image_MouseDown" Height="70" Width="78"/>
 
     </Canvas>
 </Window>
