@@ -7,26 +7,33 @@ using System.Windows.Controls;
 
 namespace Card_game
 {
-    class Card
+    class Card: Image
     {
-        private int number { get; set; }
-        private string state { get; set; }
-        private string type { get; set; }
-        private Image img { get; set; }
+        private int Number { get; set; }
+        private string State { get; set; }
+        private string Type { get; set; }
+        private string Source { get; set; }
 
 
-        public Card(int number, string type, Image img)
+        public Card(int number, string type, string source)
         {
-            this.number = number;
-            state = "deck";
-            this.type = type;
-            this.img = img;
+            this.Number = number;
+            State = "deck";
+            this.Type = type;
+            this.Source = source;
+            
         }
 
-        public Card PlayCard()
+        public Card PlayCard( Card target)
         {
-
-
+            
+            if(target.Number==this.Number || target.Type.Equals(this.Type))
+            {
+                
+                this.State = "played";
+                
+            }
+            
             return this;
     
         }

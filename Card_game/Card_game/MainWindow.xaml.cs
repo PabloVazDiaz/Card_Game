@@ -25,7 +25,7 @@ namespace Card_game
         Point initial;
         Image imagemoving;
         Point boundary;
-
+        Point initialMouse;
 
 
         public MainWindow()
@@ -54,10 +54,10 @@ namespace Card_game
         {
             
             MouseIsDown = true;
-            initial= e.GetPosition(sender as Image);
+            initialMouse= e.GetPosition(canvasTotal);
             imagemoving = (sender as Image);
-            //initial = new Point( Canvas.GetLeft(imagemoving), Canvas.GetTop(imagemoving));
-            
+            //initial = new Point( Canvas.GetLeft(sender as Image), Canvas.GetTop(sender as Image));
+            (sender as Image).TranslatePoint(initial,canvasTotal);
         }
 
 
@@ -66,9 +66,9 @@ namespace Card_game
             if (MouseIsDown)
             {
 
-                Point p = Mouse.GetPosition(Application.Current.MainWindow);
-                double xOffset = p.X - initial.X;
-                double yOffset = p.Y - initial.Y;
+                Point p = Mouse.GetPosition(canvasTotal);
+                double xOffset = p.X - initialMouse.X;
+                double yOffset = p.Y - initialMouse.Y;
                 imagemoving.RenderTransform = new TranslateTransform { X = xOffset, Y = yOffset };
             }
         }
@@ -77,5 +77,13 @@ namespace Card_game
         {
             boundary = new Point(Canvas.GetLeft(Label1), Canvas.GetTop(Label1));
         }
+
+        private void Image_Drop(object sender, DragEventArgs e)
+        {
+            MessageBox.Show(e.Source.GetType().Name);
+            //(sender as Card).PlayCard(e.Source as Card);
+        }
+
+       
     }
 }
