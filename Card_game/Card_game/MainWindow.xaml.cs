@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +33,21 @@ namespace Card_game
         public MainWindow()
         {
             InitializeComponent();
+            Card cartaPrueba = new Card(2, "corazones","Assets/2H.png");
+        
+            MessageBox.Show("Json creado");
+            JsonSerializer serializer = new JsonSerializer();
+            using (StreamWriter sw = new StreamWriter("cartasJson.json"))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+
+                serializer.Serialize(writer, cartaPrueba);
+            }
+        
+            canvasTotal.Children.Add(cartaPrueba);
+            Canvas.SetTop(cartaPrueba, 2);
+            Canvas.SetLeft(cartaPrueba, 2);
+
         }
 
         

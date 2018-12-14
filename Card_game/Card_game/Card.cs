@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Card_game.Properties;
+
 
 namespace Card_game
 {
@@ -12,15 +16,15 @@ namespace Card_game
         private int Number { get; set; }
         private string State { get; set; }
         private string Type { get; set; }
-        private string Source { get; set; }
+       
 
 
-        public Card(int number, string type, string source)
+        public Card(int number, string type,string uri)
         {
             this.Number = number;
             State = "deck";
             this.Type = type;
-            this.Source = source;
+            this.Source = new BitmapImage(new Uri(@uri,UriKind.Relative));
             
         }
 
