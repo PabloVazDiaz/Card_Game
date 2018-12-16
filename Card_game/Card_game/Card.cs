@@ -13,10 +13,10 @@ namespace Card_game
 {
     class Card: Image
     {
-        private int Number { get; set; }
+        public int Number { get; set; }
         private string State { get; set; }
-        private string Type { get; set; }
-       
+        public string Type { get; set; }
+        public string uri { get; set; }
 
 
         public Card(int number, string type,string uri)
@@ -24,21 +24,22 @@ namespace Card_game
             this.Number = number;
             State = "deck";
             this.Type = type;
+            this.uri = uri;
             this.Source = new BitmapImage(new Uri(@uri,UriKind.Relative));
             
         }
-
-        public Card PlayCard( Card target)
+        
+        public bool PlayCard( Card target)
         {
             
             if(target.Number==this.Number || target.Type.Equals(this.Type))
             {
                 
                 this.State = "played";
-                
+                return true;
             }
             
-            return this;
+            return false;
     
         }
     }

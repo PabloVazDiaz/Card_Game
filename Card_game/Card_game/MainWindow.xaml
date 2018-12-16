@@ -5,14 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Card_game"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="585" Width="1151" Loaded="Window_Loaded">
     <Canvas Name="canvasTotal" MouseMove="CanvasTotal_MouseMove">
+        <Grid Name="PlayArea" Height="106" Canvas.Left="440" Canvas.Top="192" Width="102"/>
+        <Grid Name="Player1_Hand" HorizontalAlignment="Left" Height="85" ShowGridLines="True" VerticalAlignment="Top" Width="892" Canvas.Left="112" Canvas.Top="459"/>
 
-        <Grid Name="Player1_Hand" HorizontalAlignment="Left" Height="80" Margin="304,340,0,0" VerticalAlignment="Top" Width="100">
-        </Grid>
-        <Label Content="Suprise" Name="Label1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Canvas.Left="304" Canvas.Top="182" Width="100"/>
-        <Image Source="C:\Users\Anonimo\source\repos\Card_Game\Card_game\Card_game\Assets\settings-icon.png"  MouseUp="Image_MouseUp" MouseDown="Image_MouseDown" Height="70" Width="78" Canvas.Left="280" Canvas.Top="28" />
-        <Image Source="C:\Users\Anonimo\source\repos\Card_Game\Card_game\Card_game\Assets\settings-icon.png"  MouseUp="Image_MouseUp" MouseDown="Image_MouseDown" Height="70" Width="78" Canvas.Left="376" Canvas.Top="28" />
+        <Grid Name="DeckArea" Height="106" Canvas.Left="572" Canvas.Top="192" Width="104"/>
 
     </Canvas>
 </Window>

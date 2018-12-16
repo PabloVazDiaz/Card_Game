@@ -4,20 +4,30 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
 
 
 namespace Card_game
 {
-    class Deck
+    class Deck: Image
     {
-        public Deck( string jsonPath, List<Card> initialCards, List<Card> cards, int players, string name)
+        private List<Card> InitialCards { get; set; }
+        private List<Card> Cards { get; set; }
+        private int Players { get; set; }
+        private string Name { get; set; }
+        private Random rd = new Random();
+
+        public Deck( string jsonPath, List<Card> InitialCards, int players, string name)
         {
-            InitialCards = createCards(jsonPath);
-            InitialCards = initialCards;
-            Cards = cards;
+            //InitialCards = createCards(jsonPath);
+            this.InitialCards = InitialCards;
+            Cards = new List<Card>();
+            Cards.AddRange(InitialCards);
             Players = players;
             Name = name;
+            this.Source= new BitmapImage(new Uri("Assets/Deck/gray_back.png", UriKind.Relative));
         }
 
         private List<Card> createCards(string jsonPath)
@@ -27,16 +37,14 @@ namespace Card_game
             {
                 string json = r.ReadToEnd();
                 InitialCards = JsonConvert.DeserializeObject<List<Card>>(json);
+                
             }
  
 
             return InitialCards;
         }
 
-        private List<Card> InitialCards { get; set; }
-        private List<Card> Cards { get; set; }
-        private int Players { get; set; }
-        private string Name { get; set; }
+        
 
        
 
@@ -51,6 +59,11 @@ namespace Card_game
                 ResetDeck();
             }
             return selectedCard;
+        }
+
+        public void shuffle()
+        {
+            Cards = Cards.OrderBy(x => rd.Next()).ToList();
         }
 
         public void ResetDeck()

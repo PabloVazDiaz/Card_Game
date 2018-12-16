@@ -104,9 +104,70 @@
     <Resource Include="Assets\settings-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\2H.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Assets\Deck\10C.png" />
+    <Resource Include="Assets\Deck\10D.png" />
+    <Resource Include="Assets\Deck\10H.png" />
+    <Resource Include="Assets\Deck\10S.png" />
+    <Resource Include="Assets\Deck\1C.png" />
+    <Resource Include="Assets\Deck\1D.png" />
+    <Resource Include="Assets\Deck\1H.png" />
+    <Resource Include="Assets\Deck\1S.png" />
+    <Resource Include="Assets\Deck\2C.png" />
+    <Resource Include="Assets\Deck\2D.png" />
+    <Resource Include="Assets\Deck\2H.png" />
+    <Resource Include="Assets\Deck\2S.png" />
+    <Resource Include="Assets\Deck\3C.png" />
+    <Resource Include="Assets\Deck\3D.png" />
+    <Resource Include="Assets\Deck\3H.png" />
+    <Resource Include="Assets\Deck\3S.png" />
+    <Resource Include="Assets\Deck\4C.png" />
+    <Resource Include="Assets\Deck\4D.png" />
+    <Resource Include="Assets\Deck\4H.png" />
+    <Resource Include="Assets\Deck\4S.png" />
+    <Resource Include="Assets\Deck\5C.png" />
+    <Resource Include="Assets\Deck\5D.png" />
+    <Resource Include="Assets\Deck\5H.png" />
+    <Resource Include="Assets\Deck\5S.png" />
+    <Resource Include="Assets\Deck\6C.png" />
+    <Resource Include="Assets\Deck\6D.png" />
+    <Resource Include="Assets\Deck\6H.png" />
+    <Resource Include="Assets\Deck\6S.png" />
+    <Resource Include="Assets\Deck\7C.png" />
+    <Resource Include="Assets\Deck\7D.png" />
+    <Resource Include="Assets\Deck\7H.png" />
+    <Resource Include="Assets\Deck\7S.png" />
+    <Resource Include="Assets\Deck\8C.png" />
+    <Resource Include="Assets\Deck\8D.png" />
+    <Resource Include="Assets\Deck\8H.png" />
+    <Resource Include="Assets\Deck\8S.png" />
+    <Resource Include="Assets\Deck\9C.png" />
+    <Resource Include="Assets\Deck\9D.png" />
+    <Resource Include="Assets\Deck\9H.png" />
+    <Resource Include="Assets\Deck\9S.png" />
+    <Resource Include="Assets\Deck\aces.png" />
+    <Resource Include="Assets\Deck\back_cards-07.png" />
+    <Resource Include="Assets\Deck\blue_back.png" />
+    <Resource Include="Assets\Deck\gray_back.png" />
+    <Resource Include="Assets\Deck\green_back.png" />
+    <Resource Include="Assets\Deck\honors_spade-14.png" />
+    <Resource Include="Assets\Deck\honor_clubs.png" />
+    <Resource Include="Assets\Deck\honor_diamond.png" />
+    <Resource Include="Assets\Deck\honor_heart-14.png" />
+    <Resource Include="Assets\Deck\11C.png" />
+    <Resource Include="Assets\Deck\11D.png" />
+    <Resource Include="Assets\Deck\11H.png" />
+    <Resource Include="Assets\Deck\11S.png" />
+    <Resource Include="Assets\Deck\12C.png" />
+    <Resource Include="Assets\Deck\12D.png" />
+    <Resource Include="Assets\Deck\12H.png" />
+    <Resource Include="Assets\Deck\12S.png" />
+    <Resource Include="Assets\Deck\purple_back.png" />
+    <Resource Include="Assets\Deck\13C.png" />
+    <Resource Include="Assets\Deck\13D.png" />
+    <Resource Include="Assets\Deck\13H.png" />
+    <Resource Include="Assets\Deck\13S.png" />
+    <Resource Include="Assets\Deck\red_back.png" />
+    <Resource Include="Assets\Deck\yellow_back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

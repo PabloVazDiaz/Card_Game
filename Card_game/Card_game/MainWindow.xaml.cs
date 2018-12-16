@@ -28,26 +28,53 @@ namespace Card_game
         Image imagemoving;
         Point boundary;
         Point initialMouse;
+        Deck playDeck;
+        Card activeCard;
+        int handSize=0;
+        List<Card> toSerialize = new List<Card>();
 
 
         public MainWindow()
         {
             InitializeComponent();
-            Card cartaPrueba = new Card(2, "corazones","Assets/2H.png");
-        
+
+            Dictionary<int, string> typeDic = new Dictionary<int, string>()
+            {
+                { 0,"Hearts"},
+                {1,"Diamonds" },
+                {2,"Clubs" },
+                {3,"Spikes" }
+            };
+
+            
+
+            for (int i = 0; i < 4; i++)
+            {
+                string type = typeDic[i];
+                for (int j = 1; j < 14; j++)
+                {
+                    int number = j;
+                    string source = $"Assets/Deck/{j}{(typeDic[i] as string).ToUpper()[0]}.png";
+                    Card c = new Card(number, type, source);
+                    c.MouseDown += Image_MouseDown;
+                    c.MouseUp += Image_MouseUp;
+                    toSerialize.Add(c);
+                }
+            }
+            /*
             MessageBox.Show("Json creado");
             JsonSerializer serializer = new JsonSerializer();
             using (StreamWriter sw = new StreamWriter("cartasJson.json"))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
 
-                serializer.Serialize(writer, cartaPrueba);
+                serializer.Serialize(writer, toSerialize);
             }
-        
+            /*
             canvasTotal.Children.Add(cartaPrueba);
             Canvas.SetTop(cartaPrueba, 2);
             Canvas.SetLeft(cartaPrueba, 2);
-
+            */
         }
 
         
@@ -57,9 +84,22 @@ namespace Card_game
             
             MouseIsDown = false;
             Point mouse = Mouse.GetPosition(Application.Current.MainWindow);
-            if (mouse.X > boundary.X && mouse.Y >boundary.Y && mouse.X < boundary.X+Label1.Width && mouse.Y<Label1.Height+boundary.Y)
+            if (mouse.X > boundary.X && mouse.Y >boundary.Y && mouse.X < boundary.X+PlayArea.Width && mouse.Y<PlayArea.Height+boundary.Y)
             {
-                MessageBox.Show(Mouse.GetPosition(Application.Current.MainWindow).X.ToString()+" "+ Label1.Margin.Left);
+                if((sender as Card).PlayCard(activeCard))
+                {
+                    
+                    PlayArea.Children.Remove(activeCard);
+                    activeCard = sender as Card;
+                    Player1_Hand.Children.Remove(activeCard);
+                    //Grid.SetColumn(activeCard, 0);
+                    PlayArea.Children.Add(activeCard);
+                }
+                else
+                {
+                    imagemoving.RenderTransform = new TranslateTransform { X = initial.X, Y = initial.Y };
+
+                }
             }
             else
             {
@@ -92,15 +132,26 @@ namespace Card_game
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            boundary = new Point(Canvas.GetLeft(Label1), Canvas.GetTop(Label1));
+            
+            playDeck = new Deck("cartasJson.json", toSerialize, 2, "Baraja");
+            DeckArea.Children.Add(playDeck);
+            playDeck.shuffle();
+            playDeck.MouseDown += PlayDeck_MouseDown;
+            boundary = new Point(Canvas.GetLeft(PlayArea), Canvas.GetTop(PlayArea));
+            activeCard = playDeck.CardDraw();
+            Grid.SetColumn(activeCard, 0);
+            PlayArea.Children.Add(activeCard);
         }
 
-        private void Image_Drop(object sender, DragEventArgs e)
+        private void PlayDeck_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(e.Source.GetType().Name);
-            //(sender as Card).PlayCard(e.Source as Card);
+            Card c = (sender as Deck).CardDraw();
+            Player1_Hand.ColumnDefinitions.Add(new ColumnDefinition());
+            Grid.SetColumn(c, handSize);
+            Player1_Hand.Children.Add(c);
+            handSize++;
         }
 
-       
+ 
     }
 }
