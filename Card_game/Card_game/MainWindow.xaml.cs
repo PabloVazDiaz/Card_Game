@@ -89,7 +89,9 @@ namespace Card_game
                 if((sender as Card).PlayCard(activeCard))
                 {
                     PlayArea.Children.Remove(activeCard);
-
+                    
+                    Player1_Hand.ColumnDefinitions.RemoveAt(Grid.GetColumn(sender as Card));
+                    handSize--;
                     activeCard = sender as Card;
                     
                     Player1_Hand.Children.Remove(sender as Card);
