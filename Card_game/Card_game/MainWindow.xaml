@@ -8,7 +8,7 @@
         Title="MainWindow" Height="585" Width="1151" Loaded="Window_Loaded">
     <Canvas Name="canvasTotal" MouseMove="CanvasTotal_MouseMove">
         <Grid Name="PlayArea" Height="106" Canvas.Left="440" Canvas.Top="192" Width="102"/>
-        <Grid Name="Player1_Hand" HorizontalAlignment="Center" Height="85" VerticalAlignment="Center" Width="892" Canvas.Left="112" Canvas.Top="459"/>
+        <Grid Name="Player1HandArea" HorizontalAlignment="Center" Height="85" VerticalAlignment="Center" Width="892" Canvas.Left="112" Canvas.Top="459"/>
 
         <Grid Name="DeckArea" Height="106" Canvas.Left="572" Canvas.Top="192" Width="104"/>
 

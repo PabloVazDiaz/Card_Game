@@ -30,8 +30,8 @@ namespace Card_game
         Point initialMouse;
         Deck playDeck;
         Card activeCard;
-        int handSize=0;
         List<Card> toSerialize = new List<Card>();
+        List<Card> Player1Hand = new List<Card>();
 
 
         public MainWindow()
@@ -89,15 +89,20 @@ namespace Card_game
                 if((sender as Card).PlayCard(activeCard))
                 {
                     PlayArea.Children.Remove(activeCard);
-                    
-                    Player1_Hand.ColumnDefinitions.RemoveAt(Grid.GetColumn(sender as Card));
-                    handSize--;
+
+                    Player1HandArea.ColumnDefinitions.RemoveAt(Grid.GetColumn(sender as Card));
+                    Player1Hand.Remove(sender as Card);
                     activeCard = sender as Card;
+                    activeCard.MouseDown -= Image_MouseDown;
+                    activeCard.MouseUp -= Image_MouseUp;
                     
-                    Player1_Hand.Children.Remove(sender as Card);
+                    Player1HandArea.Children.Remove(sender as Card);
                     PlayArea.Children.Add(activeCard);
-                    
-                    
+                    foreach (Card c in Player1Hand)
+                    {
+                        Grid.SetColumn(c, Player1Hand.IndexOf(c));
+                    }
+
 
                 }
                 
@@ -146,10 +151,10 @@ namespace Card_game
         private void PlayDeck_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Card c = (sender as Deck).CardDraw();
-            Player1_Hand.ColumnDefinitions.Add(new ColumnDefinition());
-            Grid.SetColumn(c, handSize);
-            Player1_Hand.Children.Add(c);
-            handSize++;
+            Player1HandArea.ColumnDefinitions.Add(new ColumnDefinition());
+            Grid.SetColumn(c, Player1Hand.Count);
+            Player1HandArea.Children.Add(c);
+            Player1Hand.Add(c);
         }
 
  
