@@ -88,23 +88,21 @@ namespace Card_game
             {
                 if((sender as Card).PlayCard(activeCard))
                 {
-                    
                     PlayArea.Children.Remove(activeCard);
+
                     activeCard = sender as Card;
-                    Player1_Hand.Children.Remove(activeCard);
-                    //Grid.SetColumn(activeCard, 0);
+                    
+                    Player1_Hand.Children.Remove(sender as Card);
                     PlayArea.Children.Add(activeCard);
-                }
-                else
-                {
-                    imagemoving.RenderTransform = new TranslateTransform { X = initial.X, Y = initial.Y };
+                    
+                    
 
                 }
+                
             }
-            else
-            {
+            
                 imagemoving.RenderTransform = new TranslateTransform { X = initial.X , Y = initial.Y };
-            }
+            
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
