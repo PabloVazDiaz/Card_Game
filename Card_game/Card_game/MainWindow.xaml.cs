@@ -32,7 +32,7 @@ namespace Card_game
         Card activeCard;
         List<Card> toSerialize = new List<Card>();
         List<Card> Player1Hand = new List<Card>();
-
+        List<Player> Players = new List<Player>();
 
         public MainWindow()
         {
@@ -61,20 +61,7 @@ namespace Card_game
                     toSerialize.Add(c);
                 }
             }
-            /*
-            MessageBox.Show("Json creado");
-            JsonSerializer serializer = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter("cartasJson.json"))
-            using (JsonWriter writer = new JsonTextWriter(sw))
-            {
-
-                serializer.Serialize(writer, toSerialize);
-            }
-            /*
-            canvasTotal.Children.Add(cartaPrueba);
-            Canvas.SetTop(cartaPrueba, 2);
-            Canvas.SetLeft(cartaPrueba, 2);
-            */
+            
         }
 
         
@@ -146,15 +133,21 @@ namespace Card_game
             activeCard = playDeck.CardDraw();
             Grid.SetColumn(activeCard, 0);
             PlayArea.Children.Add(activeCard);
+
+            Players.Add(new Player("Jugador 1",playDeck , true, Player1HandArea));
+
         }
 
         private void PlayDeck_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Card c = (sender as Deck).CardDraw();
+            /*Card c = (sender as Deck).CardDraw();
             Player1HandArea.ColumnDefinitions.Add(new ColumnDefinition());
             Grid.SetColumn(c, Player1Hand.Count);
             Player1HandArea.Children.Add(c);
             Player1Hand.Add(c);
+            */
+            (Players.FirstOrDefault(x => x.active == true) as Player).DrawCard(playDeck, 1);
+            
         }
 
  
