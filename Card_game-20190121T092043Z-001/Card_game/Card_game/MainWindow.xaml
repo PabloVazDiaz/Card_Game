@@ -1,0 +1,19 @@
+﻿<Window x:Class="Card_game.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Card_game"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="585" Width="1151" Loaded="Window_Loaded" ResizeMode="NoResize" Background="DarkGreen">
+    <Canvas Name="canvasTotal" MouseMove="CanvasTotal_MouseMove">
+        <Grid Name="PlayArea" Height="106" Canvas.Left="446" Canvas.Top="210" Width="102"/>
+        <Grid Name="Player1HandArea" HorizontalAlignment="Center" Height="85" VerticalAlignment="Center" Width="892" Canvas.Left="112" Canvas.Bottom="25"/>
+        <Grid Name="Player2HandArea" HorizontalAlignment="Center" Height="86" VerticalAlignment="Center" Width="892" Canvas.Left="112" Canvas.Top="25"/>
+
+        <Grid Name="DeckArea" Height="106" Canvas.Left="578" Canvas.Top="210" Width="104"/>
+        <Label Name="Player1Label" Content="Turno Jugador 1" Canvas.Left="502" Canvas.Top="409"/>
+        <Label Name="Player2Label" Content="Turno Jugador 2" Canvas.Left="502" Canvas.Top="126" Visibility="Hidden"/>
+
+    </Canvas>
+</Window>

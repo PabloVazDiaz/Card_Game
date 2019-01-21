@@ -23,6 +23,7 @@ namespace Card_game
     /// </summary>
     public partial class MainWindow : Window
     {
+        public String DeckSelect;
         bool MouseIsDown;
         Point initial;
         Image imagemoving;
@@ -38,6 +39,9 @@ namespace Card_game
         {
             InitializeComponent();
 
+            CardSelector cs = new CardSelector(DeckSelect);
+            cs.ShowDialog();
+            this.DeckSelect = cs.DeckSelect;
             Dictionary<int, string> typeDic = new Dictionary<int, string>()
             {
                 { 0,"Hearts"},
@@ -45,16 +49,29 @@ namespace Card_game
                 {2,"Clubs" },
                 {3,"Spikes" }
             };
-
-            
+            int limit;
+            string path;
+            string extension;
+            if (DeckSelect == "francesa")
+            {
+                limit = 14;
+                path = "Assets/Deck/";
+                extension = ".png";
+            }
+            else
+            {
+                limit = 13;
+                path = "Assets/SpanishDeck/";
+                extension = ".jpg";
+            }
 
             for (int i = 0; i < 4; i++)
             {
                 string type = typeDic[i];
-                for (int j = 1; j < 14; j++)
+                for (int j = 1; j < limit; j++)
                 {
                     int number = j;
-                    string source = $"Assets/Deck/{j}{(typeDic[i] as string).ToUpper()[0]}.png";
+                    string source = $"{path}{j}{(typeDic[i] as string).ToUpper()[0]}{extension}";
                     Card c = new Card(number, type, source);
                     c.MouseDown += Image_MouseDown;
                     c.MouseUp += Image_MouseUp;
@@ -68,7 +85,11 @@ namespace Card_game
 
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            
+
+            if (!(sender as Image).IsDescendantOf(Players.FirstOrDefault(x => x.active == true).HandArea))
+            {
+                return;
+            }
             MouseIsDown = false;
             Point mouse = Mouse.GetPosition(Application.Current.MainWindow);
             if (mouse.X > boundary.X && mouse.Y >boundary.Y && mouse.X < boundary.X+PlayArea.Width && mouse.Y<PlayArea.Height+boundary.Y)
@@ -76,20 +97,28 @@ namespace Card_game
                 if((sender as Card).PlayCard(activeCard))
                 {
                     PlayArea.Children.Remove(activeCard);
-
-                    Player1HandArea.ColumnDefinitions.RemoveAt(Grid.GetColumn(sender as Card));
-                    Player1Hand.Remove(sender as Card);
+                    Player targetPlayer = Players.FirstOrDefault(x => x.active == true);
+                    targetPlayer.HandArea.ColumnDefinitions.RemoveAt(Grid.GetColumn(sender as Card));
+                    targetPlayer.hand.Remove(sender as Card);
                     activeCard = sender as Card;
-                    activeCard.MouseDown -= Image_MouseDown;
-                    activeCard.MouseUp -= Image_MouseUp;
                     
-                    Player1HandArea.Children.Remove(sender as Card);
+                    
+                    targetPlayer.HandArea.Children.Remove(sender as Card);
                     PlayArea.Children.Add(activeCard);
-                    foreach (Card c in Player1Hand)
+                    foreach (Card c in targetPlayer.hand)
                     {
-                        Grid.SetColumn(c, Player1Hand.IndexOf(c));
+                        Grid.SetColumn(c, targetPlayer.hand.IndexOf(c));
                     }
-
+                    if (targetPlayer.hand.Count == 0)
+                    {
+                        targetPlayer.Win();
+                        this.Close();
+                    }
+                    else
+                    {
+                       targetPlayer.NextPlayer(Players);
+                    }
+                   
 
                 }
                 
@@ -101,11 +130,13 @@ namespace Card_game
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+            if(!(sender as Image).IsDescendantOf(Players.FirstOrDefault(x=>x.active==true).HandArea))
+            {
+                return;
+            }
             MouseIsDown = true;
             initialMouse= e.GetPosition(canvasTotal);
             imagemoving = (sender as Image);
-            //initial = new Point( Canvas.GetLeft(sender as Image), Canvas.GetTop(sender as Image));
             (sender as Image).TranslatePoint(initial,canvasTotal);
         }
 
@@ -134,18 +165,15 @@ namespace Card_game
             Grid.SetColumn(activeCard, 0);
             PlayArea.Children.Add(activeCard);
 
-            Players.Add(new Player("Jugador 1",playDeck , true, Player1HandArea));
+            Players.Add(new Player("Jugador 1",playDeck , true, Player1HandArea, Player1Label));
+            Players.Add(new Player("Jugador 2",playDeck , false, Player2HandArea, Player2Label));
+            
 
         }
 
         private void PlayDeck_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            /*Card c = (sender as Deck).CardDraw();
-            Player1HandArea.ColumnDefinitions.Add(new ColumnDefinition());
-            Grid.SetColumn(c, Player1Hand.Count);
-            Player1HandArea.Children.Add(c);
-            Player1Hand.Add(c);
-            */
+            
             (Players.FirstOrDefault(x => x.active == true) as Player).DrawCard(playDeck, 1);
             
         }

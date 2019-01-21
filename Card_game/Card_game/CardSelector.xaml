@@ -1,0 +1,14 @@
+﻿<Window x:Class="Card_game.CardSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Card_game"
+        mc:Ignorable="d"
+        Title="CardSelector" Height="450" Width="800" Background="DarkGreen">
+    <Grid>
+        <Image Name="francesa" HorizontalAlignment="Left" Height="153" Margin="486,134,0,0" VerticalAlignment="Top" Source="Assets\Deck\1C.png" Width="109" MouseDown="francesa_MouseDown"/>
+        <Image Name="española" HorizontalAlignment="Left" Height="153" Margin="181,134,0,0" VerticalAlignment="Top" Source="Assets\SpanishDeck\1S.jpg" Width="109" MouseDown="española_MouseDown"/>
+        <Label Content="Selecciona la baraja con la que jugar" HorizontalAlignment="Left" Margin="279,78,0,0" VerticalAlignment="Top" Width="221"/>
+    </Grid>
+</Window>

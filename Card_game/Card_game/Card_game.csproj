@@ -57,6 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CardSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,6 +70,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Card.cs" />
+    <Compile Include="CardSelector.xaml.cs">
+      <DependentUpon>CardSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Deck.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -165,6 +172,56 @@
     <Resource Include="Assets\Deck\13S.png" />
     <Resource Include="Assets\Deck\red_back.png" />
     <Resource Include="Assets\Deck\yellow_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\SpanishDeck\10C.jpg" />
+    <Resource Include="Assets\SpanishDeck\10D.jpg" />
+    <Resource Include="Assets\SpanishDeck\10H.jpg" />
+    <Resource Include="Assets\SpanishDeck\10S.jpg" />
+    <Resource Include="Assets\SpanishDeck\11C.jpg" />
+    <Resource Include="Assets\SpanishDeck\11D.jpg" />
+    <Resource Include="Assets\SpanishDeck\11H.jpg" />
+    <Resource Include="Assets\SpanishDeck\11S.jpg" />
+    <Resource Include="Assets\SpanishDeck\12C.jpg" />
+    <Resource Include="Assets\SpanishDeck\12D.jpg" />
+    <Resource Include="Assets\SpanishDeck\12H.jpg" />
+    <Resource Include="Assets\SpanishDeck\12S.jpg" />
+    <Resource Include="Assets\SpanishDeck\1C.jpg" />
+    <Resource Include="Assets\SpanishDeck\1D.jpg" />
+    <Resource Include="Assets\SpanishDeck\1H.jpg" />
+    <Resource Include="Assets\SpanishDeck\1S.jpg" />
+    <Resource Include="Assets\SpanishDeck\2C.jpg" />
+    <Resource Include="Assets\SpanishDeck\2D.jpg" />
+    <Resource Include="Assets\SpanishDeck\2H.jpg" />
+    <Resource Include="Assets\SpanishDeck\2S.jpg" />
+    <Resource Include="Assets\SpanishDeck\3C.jpg" />
+    <Resource Include="Assets\SpanishDeck\3D.jpg" />
+    <Resource Include="Assets\SpanishDeck\3H.jpg" />
+    <Resource Include="Assets\SpanishDeck\3S.jpg" />
+    <Resource Include="Assets\SpanishDeck\4C.jpg" />
+    <Resource Include="Assets\SpanishDeck\4D.jpg" />
+    <Resource Include="Assets\SpanishDeck\4H.jpg" />
+    <Resource Include="Assets\SpanishDeck\4S.jpg" />
+    <Resource Include="Assets\SpanishDeck\5C.jpg" />
+    <Resource Include="Assets\SpanishDeck\5D.jpg" />
+    <Resource Include="Assets\SpanishDeck\5H.jpg" />
+    <Resource Include="Assets\SpanishDeck\5S.jpg" />
+    <Resource Include="Assets\SpanishDeck\6C.jpg" />
+    <Resource Include="Assets\SpanishDeck\6D.jpg" />
+    <Resource Include="Assets\SpanishDeck\6H.jpg" />
+    <Resource Include="Assets\SpanishDeck\6S.jpg" />
+    <Resource Include="Assets\SpanishDeck\7C.jpg" />
+    <Resource Include="Assets\SpanishDeck\7D.jpg" />
+    <Resource Include="Assets\SpanishDeck\7H.jpg" />
+    <Resource Include="Assets\SpanishDeck\7S.jpg" />
+    <Resource Include="Assets\SpanishDeck\8C.jpg" />
+    <Resource Include="Assets\SpanishDeck\8D.jpg" />
+    <Resource Include="Assets\SpanishDeck\8H.jpg" />
+    <Resource Include="Assets\SpanishDeck\8S.jpg" />
+    <Resource Include="Assets\SpanishDeck\9C.jpg" />
+    <Resource Include="Assets\SpanishDeck\9D.jpg" />
+    <Resource Include="Assets\SpanishDeck\9H.jpg" />
+    <Resource Include="Assets\SpanishDeck\9S.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
